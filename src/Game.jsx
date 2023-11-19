@@ -5,55 +5,86 @@ import wordlist from "./assets/wordlist.json";
 export default function Game() {
 	const [fixedLetters, setFixedLetters] = useState([]);
 	const [form, setForm] = useState({});
+	const [moveResult, setMoveResult] = useState("");
+
+	// switch inputs and clear what was in previous one
+	function handleClick(event) {
+		const formSet = Object.keys(form).length > 0;
+		if (formSet && event.target.name === "firstLetter") {
+			let ignoreInput = document.getElementsByName("lastLetter")[0];
+			console.log(ignoreInput);
+			ignoreInput.value = "";
+		} else if (formSet && event.target.name === "lastLetter") {
+			let ignoreInput = document.getElementsByName("firstLetter")[0];
+			console.log(ignoreInput);
+			ignoreInput.value = "";
+		}
+	}
 
 	function handleChange(event) {
 		console.log(event.target.name);
 		setForm({ [event.target.name]: event.target.value });
 	}
+
 	function handleSubmit(event) {
 		event.preventDefault();
 		// add the letter to the fixedletters
 		const v = Object.keys(form)[0];
-		console.log(v);
+		// add the letter to the array and check it against wordlist
+		let letterArray = null;
 		if (v === "lastLetter") {
-			setFixedLetters([...fixedLetters, form[v]]);
+			letterArray = [...fixedLetters, form[v]];
 		} else if (v === "firstLetter") {
-			console.log(form[v]);
-			setFixedLetters([form[v], ...fixedLetters]);
+			letterArray = [form[v], ...fixedLetters];
 		}
-		console.log(fixedLetters);
+		setFixedLetters(letterArray);
+		setMoveResult(wordCheck(letterArray));
+		console.log(fixedLetters, wordCheck(letterArray));
+		// reset inputs
+		setForm({});
 		event.target[v].value = "";
-
-		wordCheck();
 	}
 
-	function wordCheck() {
-		const words = "howdy";
-		console.log(words);
+	function wordCheck(fixedLetterArray) {
+		const letterString = fixedLetterArray.join("");
+		const filtered = wordlist.filter((word) => word.includes(letterString));
+		let response = "";
+		if (filtered.length === 0) {
+			response = "Uh oh! There is no word you can now make with these letters";
+		} else {
+			const wholeWord = filtered.find((word) => word === letterString);
+			response = wholeWord
+				? "You finished the word: " + wholeWord
+				: "Yep that's fine. Next player.";
+		}
+		return response;
 	}
 
 	return (
 		<div>
-			<form onSubmit={handleSubmit} onChange={handleChange}>
-				{fixedLetters.length > 0 && (
-					<input
-						type="text"
-						className="letter"
-						name="firstLetter"
-						maxLength={1}
-					/>
-				)}
+			<div id="letter-string">
 				{fixedLetters.length > 0 &&
 					fixedLetters.map((letter, index) => {
 						return <Letter fixedLetter={letter} key={"L" + index} />;
 					})}
-				<input type="text" className="letter" name="lastLetter" maxLength={1} />
+			</div>
+			<form
+				id="letter-form"
+				onSubmit={handleSubmit}
+				onChange={handleChange}
+				onClick={handleClick}>
+				<div>
+					{fixedLetters.length > 0 && (
+						<input type="text" name="firstLetter" maxLength={1} />
+					)}
+
+					<input type="text" name="lastLetter" maxLength={1} />
+				</div>
 				<input type="submit" value="Submit" />
+				<button id="challenge-button">Challenge</button>
 			</form>
+			<h3>{moveResult}</h3>
 		</div>
 	);
 }
-// start with one letter
-// each time a letter is added it goes onto the start or end and new input boxes appear at start and end
-// means knwoing which one was submitted, and using unshift or push
 // and not allowing both to have text entered - using handleChange and useState

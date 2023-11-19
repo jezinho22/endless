@@ -1,3 +1,18 @@
+body {
+	width: 100%;
+	margin: 0;
+	background-color: steelblue;
+	color: blanchedalmond;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#playerForm {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	/* flex-flow: row wrap; */
+}
 .profile {
 	background-color: green;
 	display: flex;
