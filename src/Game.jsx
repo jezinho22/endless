@@ -60,27 +60,34 @@ export default function Game() {
 		return response;
 	}
 
-    function CPUTurn (fixedLetterArray){
-        const choices = wordlist.filter((word) => word.includes(fixedLetterArray))
-        // const orderedChoices = choices.sort((a, b)=>a.length - b.length)
-        // const random = Math.floor(Math.random()*choices.length)
-        // const targetWord = orderedChoices[random]
-        const bestChoices = choices.filter((word) => {
-            word.length == fixedLetterArray.length + 2})
-        const nextBestChoices = choices.filter((word) => {
-            word.length > fixedLetterArray.length + 2})
-        const worstChoices = choices.filter((word) => {
-            word.length == fixedLetterArray.length + 1})
-        if (bestChoices.length > 0){
-            for (let i = 0; i < bestChoices.length;i++){
-                if (bestChoices[i] )
-            }
-        } else {
-            nextBestChoices.map((word) => {
-                
-            })
-        }
-    }
+	function CPUTurn(fixedLetterArray) {
+		const choices = wordlist.filter((word) => word.includes(fixedLetterArray));
+
+		const bestChoices = choices.filter((word) => {
+			word.length == fixedLetterArray.length + 2;
+		});
+		const nextBestChoices = choices.filter((word) => {
+			word.length > fixedLetterArray.length + 2;
+		});
+		const worstChoices = choices.filter((word) => {
+			word.length == fixedLetterArray.length + 1;
+		});
+		// worked out in replit
+		let v = "theater";
+		let x = "theatre";
+		let y = x.indexOf(v);
+
+		let z = v.length;
+		let cpuTurn;
+
+		if (x[y - 1]) {
+			cpuTurn = x[y - 1] + v;
+		} else if (x[y + z]) {
+			cpuTurn = v + x[y + z];
+		}
+
+		console.log(cpuTurn);
+	}
 	return (
 		<div>
 			<div id="letter-string">
