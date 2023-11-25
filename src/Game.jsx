@@ -60,6 +60,27 @@ export default function Game() {
 		return response;
 	}
 
+    function CPUTurn (fixedLetterArray){
+        const choices = wordlist.filter((word) => word.includes(fixedLetterArray))
+        // const orderedChoices = choices.sort((a, b)=>a.length - b.length)
+        // const random = Math.floor(Math.random()*choices.length)
+        // const targetWord = orderedChoices[random]
+        const bestChoices = choices.filter((word) => {
+            word.length == fixedLetterArray.length + 2})
+        const nextBestChoices = choices.filter((word) => {
+            word.length > fixedLetterArray.length + 2})
+        const worstChoices = choices.filter((word) => {
+            word.length == fixedLetterArray.length + 1})
+        if (bestChoices.length > 0){
+            for (let i = 0; i < bestChoices.length;i++){
+                if (bestChoices[i] )
+            }
+        } else {
+            nextBestChoices.map((word) => {
+                
+            })
+        }
+    }
 	return (
 		<div>
 			<div id="letter-string">
