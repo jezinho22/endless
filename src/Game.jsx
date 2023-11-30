@@ -60,21 +60,28 @@ export default function Game() {
 		return response;
 	}
 
+	CPUTurn("hea");
+
 	function CPUTurn(fixedLetterArray) {
 		const choices = wordlist.filter((word) => word.includes(fixedLetterArray));
 
 		const bestChoices = choices.filter((word) => {
 			word.length == fixedLetterArray.length + 2;
 		});
+		console.log(bestChoices.length);
 		const nextBestChoices = choices.filter((word) => {
 			word.length > fixedLetterArray.length + 2;
 		});
+		console.log(nextBestChoices.length);
+
 		const worstChoices = choices.filter((word) => {
 			word.length == fixedLetterArray.length + 1;
 		});
+		console.log(worstChoices.length);
+
 		// worked out in replit
 		let v = "theater";
-		let x = "theatre";
+		let x = "hea";
 		let y = x.indexOf(v);
 
 		let z = v.length;
