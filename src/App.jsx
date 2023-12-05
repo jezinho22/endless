@@ -11,8 +11,8 @@ function App() {
 
 	return (
 		<>
-			<PlayerForm setPlayers={setPlayers} />
-			<Players players={players} />
+			{/* <PlayerForm setPlayers={setPlayers} />
+			<Players players={players} /> */}
 			<Game />
 		</>
 	);

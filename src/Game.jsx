@@ -1,11 +1,19 @@
 import { useState } from "react";
 import Letter from "./Letter.jsx";
 import wordlist from "./assets/wordlist.json";
+import cpuTurn from "./scripts/cpu.js";
 
 export default function Game() {
 	const [fixedLetters, setFixedLetters] = useState([]);
 	const [form, setForm] = useState({});
 	const [moveResult, setMoveResult] = useState("");
+	console.log("Running");
+
+	cpuTurn();
+
+	function randomIndex(arrayLength) {
+		return Math.floor(Math.random() * arrayLength);
+	}
 
 	// switch inputs and clear what was in previous one
 	function handleClick(event) {
@@ -60,41 +68,6 @@ export default function Game() {
 		return response;
 	}
 
-	CPUTurn("hea");
-
-	function CPUTurn(fixedLetterArray) {
-		const choices = wordlist.filter((word) => word.includes(fixedLetterArray));
-
-		const bestChoices = choices.filter((word) => {
-			word.length == fixedLetterArray.length + 2;
-		});
-		console.log(bestChoices.length);
-		const nextBestChoices = choices.filter((word) => {
-			word.length > fixedLetterArray.length + 2;
-		});
-		console.log(nextBestChoices.length);
-
-		const worstChoices = choices.filter((word) => {
-			word.length == fixedLetterArray.length + 1;
-		});
-		console.log(worstChoices.length);
-
-		// worked out in replit
-		let v = "theater";
-		let x = "hea";
-		let y = x.indexOf(v);
-
-		let z = v.length;
-		let cpuTurn;
-
-		if (x[y - 1]) {
-			cpuTurn = x[y - 1] + v;
-		} else if (x[y + z]) {
-			cpuTurn = v + x[y + z];
-		}
-
-		console.log(cpuTurn);
-	}
 	return (
 		<div>
 			<div id="letter-string">
