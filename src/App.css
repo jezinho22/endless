@@ -1,17 +1,64 @@
+/* #ee4035 • #f37736 • #fdf498 • #7bc043 • #0392cf */
+
 body {
 	width: 100%;
 	margin: 0;
-	background-color: steelblue;
+	background-color: #fdf498;
 	color: blanchedalmond;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#playerForm {
+header {
 	display: flex;
 	flex-direction: row;
-	flex-wrap: wrap;
+	align-items: center;
+	background-color: #ee4035;
+}
+h1 {
+    font-size: 1rem;
+	text-align: center;
+	display: inline-block;
+}
+
+.logo {
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 2rem;
+	border-radius: 200px;
+
+	overflow: hidden;
+	/* border: 1px solid blue; */
+	/* text-align: center; */
+	display: inline-block;
+	padding-top: -20px;
+	padding-bottom: 20px;
+	width: 30px;
+	height: 25px;	
+	margin: 1rem;
+}
+
+#playerForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	justify-content: center;
+	min-height: 75vh;
+
 	/* flex-flow: row wrap; */
+}
+
+.playerInput {
+	height: 2rem;
+	margin: 1rem;
+	border-radius: 4px;
+	border: none;
+}
+
+#playerForm button {
+	width: 5rem;
+	height: 2rem;
+	margin: 1rem;
+	border-radius: 4px;
+	background: #7bc043;
 }
 .profile {
 	background-color: green;
@@ -36,3 +83,5 @@ body {
 p {
 	margin: 0;
 }
+
+
