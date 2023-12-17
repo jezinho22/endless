@@ -1,11 +1,16 @@
 import { useState } from "react";
 import Letter from "./Letter.jsx";
-import wordlist from "./assets/wordlist.json";
+import wordlist from "../assets/wordlist.json";
 
 export default function Game() {
 	const [fixedLetters, setFixedLetters] = useState([]);
 	const [form, setForm] = useState({});
 	const [moveResult, setMoveResult] = useState("");
+	const [gameState, setGameState] = useState('start')
+
+	function runGame(){
+		
+	}
 
 	// switch inputs and clear what was in previous one
 	function handleClick(event) {

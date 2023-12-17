@@ -1,19 +1,22 @@
-import "./App.css";
-import Game from "./Game";
-import "./game.css";
-import UserProfile from "./UserProfile";
-import PlayerForm from "./PlayerForm";
 import { useState } from "react";
-import Players from "./Players";
+
+import "./reset.css";
+import "./App.css";
+import "./game.css";
+
+import Game from "./Components/Game";
+import PlayerForm from "./Components/PlayerForm";
+import Players from "./Components/Players";
+import Header from "./Components/Header";
 
 function App() {
-	const [players, setPlayers] = useState({});
+	const [players, setPlayers] = useState([]);
 
 	return (
 		<>
-			<PlayerForm setPlayers={setPlayers} />
-			<Players players={players} />
-			<Game />
+		<Header/>
+		<PlayerForm setPlayers={setPlayers} />
+
 		</>
 	);
 }
